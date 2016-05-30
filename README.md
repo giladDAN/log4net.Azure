@@ -39,6 +39,7 @@ Every log entry is stored in a separate row.
 * <b>PartitionKeyType(optional):</b>  
   Default "LoggerName": (each logger gets his own partition in Table Storage)  
   "DateReverse": order by Date Reverse to see the latest items first ([How to order elements by date reverse](http://gauravmantri.com/2012/02/17/effective-way-of-fetching-diagnostics-data-from-windows-azure-diagnostics-table-hint-use-partitionkey/))
+  "TicksWithZero": Takes DateTime Ticks and and "0" before to support easier event find.
 
 	
 ### BlobStorage
