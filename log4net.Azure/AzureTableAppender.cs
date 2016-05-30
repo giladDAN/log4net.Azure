@@ -70,6 +70,18 @@ namespace log4net.Appender
 
         protected override void SendBuffer(LoggingEvent[] events)
         {
+            //if (events != null && events.Length > 0)
+            //{
+            //    foreach (var item in events)
+            //    {
+                 
+            //      TableOperation insertOperation = TableOperation.Insert(item as ITableEntity);
+
+            //        // Execute the insert operation.
+            //        _table.Execute(insertOperation);
+            //    }
+            //}
+
             var grouped = events.GroupBy(evt => evt.LoggerName);
 
             foreach (var group in grouped)
@@ -79,9 +91,16 @@ namespace log4net.Appender
                     var batchOperation = new TableBatchOperation();
                     foreach (var azureLoggingEvent in batch.Select(GetLogEntity))
                     {
-                        batchOperation.Insert(azureLoggingEvent);
+                        // batchOperation.Insert(azureLoggingEvent);
+
+
+                        TableOperation insertOperation = TableOperation.Insert(azureLoggingEvent);
+
+                        // Execute the insert operation.
+                        _table.Execute(insertOperation);
+
                     }
-                    _table.ExecuteBatch(batchOperation);
+                   // _table.ExecuteBatch(batchOperation);
                 }
             }
         }

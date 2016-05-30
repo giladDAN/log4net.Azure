@@ -20,7 +20,7 @@ namespace log4net.Azure.console
             }
             for (int i = 0; i < 2; i++)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(300);
                 Console.WriteLine("Waiting {0}", i);
             }
         }

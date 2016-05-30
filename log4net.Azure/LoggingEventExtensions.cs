@@ -25,6 +25,9 @@ namespace log4net.Appender
                     return string.Format("{0:D19}",
                         (DateTime.MaxValue.Ticks -
                          loggingEvent.TimeStamp.Date.AddHours(loggingEvent.TimeStamp.Hour).Ticks + 1));
+                case PartitionKeyTypeEnum.TicksWithZero:
+                    // send ticks and add zero Before
+                    return "0" + loggingEvent.TimeStamp.Ticks;
                 default:
 		            // ReSharper disable once NotResolvedInText
                     throw new ArgumentOutOfRangeException("PartitionKeyType", partitionKeyType, null);
